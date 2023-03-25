@@ -25,8 +25,8 @@ import connectRedis from "connect-redis";
 async function bootstrap() {
   // Build the schema
   const corsOptions = {
-    origin: ["http://localhost:5173","*"],
-    credentials: true
+    origin: ["http://localhost:5173", "*"],
+    credentials: true,
   };
   const schema = await buildSchema({
     resolvers,
@@ -65,9 +65,7 @@ async function bootstrap() {
   //   res.header("Access-Control-Allow-Credentials","true")
   //   next();
   // });
-  app.use(
-    cors(corsOptions)
-  );
+  app.use(cors(corsOptions));
   // const store =  new RedisClient({
   //   client: redis,
   //   disableTouch: true,
@@ -102,7 +100,7 @@ async function bootstrap() {
     context: ({ req, res }) => ({
       req,
       res,
-      redis:redisClient,
+      redis: redisClient,
       // userLoader: createUserLoader(),
       // updootLoader: createUpdootLoader(),
     }),
@@ -111,13 +109,12 @@ async function bootstrap() {
     //     ? ApolloServerPluginLandingPageProductionDefault()
     //     : ApolloServerPluginLandingPageGraphQLPlayground(),
     // ],
-    
   });
 
   await server.start();
   // apply middleware to server
 
-  server.applyMiddleware({ app,cors:corsOptions });
+  server.applyMiddleware({ app, cors: corsOptions });
 
   // app.listen on express server
   app.listen({ port: 4000 }, () => {

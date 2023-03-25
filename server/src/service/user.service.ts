@@ -44,8 +44,8 @@ export default class UserService {
   }
 
   me = async (id: string): Promise<User | null> => {
-  const user = await UserModal.findById(id);
-  return user
+    const user = await UserModal.findById(id);
+    return user;
   };
 
   async login(email: User["email"], password: string): Promise<UserResponse> {
@@ -87,7 +87,7 @@ export default class UserService {
     id: string,
     password: string
   ): Promise<UserResponse> => {
-    const user = await UserModal.findOne({ _id :id});
+    const user = await UserModal.findOne({ _id: id });
     if (!user) {
       return {
         errors: [

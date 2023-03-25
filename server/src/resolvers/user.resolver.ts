@@ -75,7 +75,7 @@ export class UserResolver {
     @Arg("email") email: string,
     @Ctx() { redis }: MyContext
   ): Promise<boolean> {
-    console.log(email)
+    console.log(email);
     const user = await this.userService.forgotpassword(email);
     if (!user) return true;
     const token = v4();
@@ -99,8 +99,8 @@ export class UserResolver {
   async changepassword(
     @Arg("token") token: string,
     @Arg("newPassword") newPassword: string,
-    @Ctx() {redis,req}: MyContext
-  ):Promise<UserResponse> {
+    @Ctx() { redis, req }: MyContext
+  ): Promise<UserResponse> {
     if (newPassword.length <= 5) {
       return {
         errors: [
@@ -112,8 +112,8 @@ export class UserResolver {
       };
     }
 
-    let key = FORGET_PASSWORD_PREFIX + token
-    let   userId = await redis.get(key)
+    let key = FORGET_PASSWORD_PREFIX + token;
+    let userId = await redis.get(key);
     if (!userId) {
       return {
         errors: [
@@ -124,14 +124,14 @@ export class UserResolver {
         ],
       };
     }
-   const user = await this.userService.changepassword(userId,newPassword)
-   if (user.errors) return user;
+    const user = await this.userService.changepassword(userId, newPassword);
+    if (user.errors) return user;
 
     await redis.del(key);
 
     // log in user after change password
     req.session.UserId = user.user?._id;
-    return user
+    return user;
   }
 
   @Mutation(() => Boolean)

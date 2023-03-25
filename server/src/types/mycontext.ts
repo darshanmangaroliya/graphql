@@ -7,5 +7,4 @@ export type MyContext = {
   req: Request & { session: ISession };
   redis: Redis;
   res: Response;
- 
 };

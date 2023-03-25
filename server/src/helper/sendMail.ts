@@ -12,20 +12,20 @@ export async function sendEmail(to: string, html: string) {
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
-    service: 'gmail',
+    service: "gmail",
     auth: {
-        user: process.env.USER,
-        pass:  process.env.PASS,
-        // ⚠️ Use environment variables set on the server for these values when deploying
-      },
+      user: process.env.USER,
+      pass: process.env.PASS,
+      // ⚠️ Use environment variables set on the server for these values when deploying
+    },
   });
 
   // send mail with defined transport object
- const info =await transporter.sendMail({
+  const info = await transporter.sendMail({
     from: '"Fred Foo 👻" <foo@example.com>', // sender address
     to: to, // list of receivers
     subject: "Change password", // Subject line
     html,
   });
-console.log(info)
+  console.log(info);
 }
