@@ -1,0 +1,10 @@
+node_modules/
+build/
+dist/
+package-lock.json
+tsconfig.json
+.eslintrc.js
+.prettierrc
+docker-compose.yml
+env.d.ts
+package.json
