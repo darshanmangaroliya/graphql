@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/server/_/husky.sh"
+
+echo("hi")
+yarn run lint-staged

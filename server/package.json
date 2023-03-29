@@ -15,7 +15,8 @@
     "lint:staged": "lint-staged",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "tsc:check": "tsc --noEmit"
+    "tsc:check": "tsc --noEmit",
+    "prepare": "cd .. && husky install .husky"
   },
   "dependencies": {
     "@typegoose/typegoose": "^10.3.3",
@@ -74,8 +75,7 @@
   "lint-staged": {
     "src/**/*.ts": [
       "yarn run prettier:fix",
-      "yarn run lint",
-      "git add"
+      "yarn run lint"
     ]
   },
   "husky": {
